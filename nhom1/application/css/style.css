@@ -1,0 +1,165 @@
+
+
+body {
+	font-family: "Calibri",Arial;
+	background-color: #f0f0f0;
+}
+a {
+	text-decoration: none;	
+}
+
+/*-----------------------TaskBar------------------*/
+.taskbar{
+	background-color:#3bbd99;
+	padding: 5px 0 ;
+}
+.taskbar a {
+	color: white;
+	margin-right: 10px;
+}
+.taskbar a:hover{
+	color: #a48403;
+	text-decoration: none;
+}
+.log {
+	float: right;
+	padding-top: 5px;
+}
+.search{
+	padding-top: 5px;
+}
+.search button{
+	background: none;
+	color: white;
+	border: none;
+	margin-left: 10px;
+}
+.search input{
+	border: none;;
+}
+/*---------------------------Slide--------------------------*/
+.carousel-inner img {
+	width: 100%;
+	max-height: 350px;
+}
+.slide {
+	margin-top: 10px;
+}
+/*----------------News---------------------------------*/
+.title{
+	background-color: #d9532d;
+}
+.title h3 {
+	padding: 5px 0 ;
+	color: white;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.title a:hover{
+	color: #a48403;
+	text-decoration: none;
+}
+
+.news {
+	margin-top: 20px;
+}
+.news a {
+	font-size: 14px;
+	color: black;
+
+}
+.news a:hover{
+	color: #8b0000;
+	text-decoration: none;
+}
+.news img {
+	width: 100%;
+}
+.news li{
+	padding: 10px 0;
+}
+.new {
+	width: 100%;
+	border-bottom: 1px solid #cccccc;
+	padding-bottom: 5px;
+}
+.new h4 {
+	padding-left: 15px;
+}
+/*----------------Content---------------------------------*/
+
+.product img {
+	width: 100%;
+	
+}
+.product {
+	text-align: center;
+	margin-top: 20px;
+	border: 1px solid #c0c0c0;
+
+}
+.product p {
+	color: red;
+}
+.product a {
+	color: black;
+}
+.product a:hover {
+	color: #8b0000;
+	text-decoration: none;
+}
+
+/*----------------Footer---------------------------------*/
+footer {
+	background-color: #3bbd99;
+	padding: 10px 0;
+	margin-top: 10px;
+}
+footer p {
+	font-size: 14px;
+	color: white;
+}
+footer img {
+	width: 100%;
+}
+
+
+/*----------------Đăng kí---------------------------------*/
+
+.dangki {
+	margin-top: 30px;
+	
+}
+
+/*----------------Đăng nhập---------------------------------*/
+.dangnhap {
+	margin-top: 30px;
+}
+
+
+/*----------------Detail---------------------------------*/
+.detail {
+	margin-top: 10px;
+}
+.detail img{
+	width: 80%;
+	margin-left: 50px;
+}
+/*----------------Product---------------------------------*/
+.products img {
+	width: 70%;
+	margin-bottom: 20px;
+}
+.btn img {
+
+	width: 110%;
+	
+}
+.btn {
+	margin-top: 20px;
+	background: none;	
+	height: 40px;
+
+
+}
