@@ -195,5 +195,41 @@
 		}
 
 
+		//quan ly tin tuc
+
+		public function  admin_new($param = false)
+		{
+			if ($param == false) 
+			{
+				$query = $this->db->get('tintuc');
+				return $query->result_array();
+			}
+			$this->db->like('id',$param);
+			$query = $this->db->get('tintuc');
+			return $query->row_array();
+		}
+
+		public function admin_new_delete($param)
+		{
+			$this->db->where('id',$param);
+			$this->db->delete('tintuc');
+		}
+
+		public function admin_new_update($id,$param = array()){
+			$this->db->where('id',$id);
+			$this->db->update('tintuc',$param);
+		}
+
+		public function admin_new_insert($param = array()){
+			if (empty($param['hinh'])) {
+				$param['hinh'] = '';
+				$this->db->insert('tintuc',$param);
+			}
+			else
+			{
+				$this->db->insert('tintuc',$param);
+			}
+			
+		}
 	}
  ?>

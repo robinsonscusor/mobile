@@ -23,22 +23,22 @@
 						</tr>
 						<tr>
 							<td>ID</td>
-							<td>id</td>
+							<td><?php echo $info['id'] ?></td>
 						</tr>
 
 						<tr>
 							<td>Tiêu Đề</td>	
-							<td><input type="text" name="tieude"></td>
+							<td><input type="text" name="tieude" value="<?php echo $info['tieude']; ?>"></td>
 						</tr>
 
 						<tr>
 							<td>Nội Dung Tóm Tắt</td>
-							<td><textarea rows="5" name="tomtat" cols="40"></textarea></td>
+							<td><textarea rows="5" name="tomtat" cols="40" ><?php echo $info['tomtat'] ?></textarea></td>
 						</tr>
 
 						<tr>
 							<td>Nội Dung</td>
-							<td><textarea rows="20" name="noidung" cols="40"></textarea></td>
+							<td><textarea rows="20" name="noidung" cols="40" ><?php echo $info['noidung'] ?></textarea></td>
 						</tr>
 
 						<tr>

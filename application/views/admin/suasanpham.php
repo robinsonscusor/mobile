@@ -38,7 +38,7 @@
 
 						<tr>
 							<td>Hình</td>
-							<td><input type="file" name="hinh" value="<?php echo $info['hinh'] ?>"></td>
+							<td><input type="file" name="hinh" ></td>
 						</tr>
 
 						<tr>

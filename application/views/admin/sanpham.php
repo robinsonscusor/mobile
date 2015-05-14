@@ -22,7 +22,7 @@
 							<td align="center" colspan="2" ><h4>Quản Lý Sản Phẩm</h4></td>
 						</tr>
 						<tr>
-							<td>
+							<td >
 								<button>
 									<a href="<?php echo base_url(); ?>administrator/insertsp"> Thêm Sản Phẩm</a>
 								</button>

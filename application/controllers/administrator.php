@@ -133,6 +133,7 @@ class Administrator extends CI_Controller{
 
 				$IdSP = $this->model_mobi->admin_idsp();
 
+
 				$values = array(
 					'chitiet' => array(
 						'manhinh' => $_POST['manhinh'],
@@ -160,7 +161,18 @@ class Administrator extends CI_Controller{
 		session_start();
 		$this->load->helper('url');
 		$this->load->view('teamplates/admin_header');
-		$this->load->view('admin/tintuc');
+
+		$data['info'] = $this->model_mobi->admin_new();
+
+		$this->load->view('admin/tintuc',$data);
+
+		$param = $this->uri->segment(3);
+			if($param == true){
+				$this->model_mobi->admin_new_delete($param);
+				echo "<script>window.location = '".base_url()."administrator/tintuc'</script>";				
+			}
+
+
 		$this->load->view('teamplates/admin_footer');
 	}
 
@@ -169,7 +181,35 @@ class Administrator extends CI_Controller{
 		session_start();
 		$this->load->helper('url');
 		$this->load->view('teamplates/admin_header');
-		$this->load->view('admin/suatintuc');
+
+		$param = $this->uri->segment(3);
+		$data['info'] = $this->model_mobi->admin_new($param);
+
+		$this->load->view('admin/suatintuc',$data);
+
+		if(isset($_POST['suatt'])){
+			if(!empty($_POST['hinh']))
+			{
+				$update = array(
+					'tieude' => $_POST['tieude'], 
+					'tomtat' => $_POST['tomtat'], 
+					'noidung' => $_POST['noidung'], 
+					'hinh' => $_POST['hinh']
+					);
+			}
+			else
+			{
+				$update = array(
+					'tieude' => $_POST['tieude'], 
+					'tomtat' => $_POST['tomtat'], 
+					'noidung' => $_POST['noidung'], 
+					
+					);
+			}
+				$this->model_mobi->admin_new_update($param,$update);
+				echo "<script>window.location = '".base_url()."administrator/tintuc'</script>";
+			}
+
 		$this->load->view('teamplates/admin_footer');
 	}
 
@@ -179,7 +219,19 @@ class Administrator extends CI_Controller{
 		$this->load->helper('url');
 		$this->load->view('teamplates/admin_header');
 		$this->load->view('admin/themtintuc');
+		if (isset($_POST['themtt'])) {
+			$param = array(
+					'tieude' => $_POST['tieude'],
+					'tieude' => $_POST['tieude'], 
+					'tomtat' => $_POST['tomtat'], 
+					'noidung' => $_POST['noidung'], 
+					'hinh' => @$_POST['hinh']
+				);
+			$this->model_mobi->admin_new_insert($param);
+			echo "<script>window.location = '".base_url()."administrator/tintuc'</script>";
+		}
 		$this->load->view('teamplates/admin_footer');
+
 	}
 
 	public function donhang()

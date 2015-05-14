@@ -22,7 +22,7 @@
 							<td align="center" colspan="2" ><h4>Quản Lý Tin Tức</h4></td>
 						</tr>
 						<tr>
-							<td>
+							<td colspan="2">
 								<button>
 									<a href="<?php echo base_url(); ?>administrator/inserttt"> Thêm Tin Tức</a>
 								</button>
@@ -35,17 +35,19 @@
 							<td>Hình</td>
 						</tr>
 
+						<?php foreach ($info as $value) : ?>
 						<tr>
-							<td>id</td>
-							<td><a href="#">tieude</a></td>	
-							<td>tomtat</td>
-							<td class="hasp"><img src="<?php echo base_url(); ?>application/images/"></td>
+							<td><?php echo $value['id'] ?></td>
+							<td><a href="<?php echo  base_url().'administrator/updatett/'.$value['id'] ?>"><?php echo $value['tieude'] ?></a></td>	
+							<td><?php echo $value['tomtat'] ?></td>
+							<td class="hasp"><img src="<?php echo base_url(); ?>application/images/<?php echo $value['hinh'] ?>"></td>
+							
 							<td>
-								<button class="btnxoa">
-									<img src="<?php echo base_url(); ?>application/images/xoa.jpg">
-								</button>
+	 							<td><a  href="<?php echo  base_url().'administrator/tintuc/'.$value['id'] ?>"><img style="width:20px;" src="<?php echo base_url(); ?>application/images/xoa.jpg" onclick="return validateDelete();"></a></td>
 							</td>
 						</tr>
+
+						<?php endforeach; ?>
 
 					</table>
 				</form>
