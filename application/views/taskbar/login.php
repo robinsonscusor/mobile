@@ -14,23 +14,23 @@
 							  </ol>
 							 
 							  <!-- Wrapper for slides -->
-							  <div class="carousel-inner">
+							 <div class="carousel-inner">
 							    <div class="item active">
-								      <img src="<?php echo base_url(); ?>application/images/3a55ec77.jpg" alt="...">
+								      <img src="<?php echo base_url(); ?>application/images/slide1.jpg" >
 								      <div class="carousel-caption">
-								          <h3>Caption Text</h3>
+								         
 								      </div>
 							    </div>
 							    <div class="item">
-								      <img src="<?php echo base_url(); ?>application/images/6abd0e4d.jpg" alt="...">
+								      <img src="<?php echo base_url(); ?>application/images/slide2.jpg">
 								      <div class="carousel-caption">
-								          <h3>Caption Text</h3>
+								          
 								      </div>
 							    </div>
 							    <div class="item">
-								      <img src="<?php echo base_url(); ?>application/images/6acec476.jpg" alt="...">
+								      <img src="<?php echo base_url(); ?>application/images/slide3.jpg">
 								      <div class="carousel-caption">
-								          <h3>Caption Text</h3>
+								         
 								      </div>
 							    </div>
 							  </div>
@@ -47,43 +47,20 @@
 					</div>
 
 					<div class="col-md-4 col-sm-4 col-xs-4">
-						<div class="title">	<a href="<?php echo base_url();?>home/index"><h3>Tin Công Nghệ</h3></a></div>
+						<div class="title">	<a href="<?php echo base_url();?>homepage/news"><h3>Tin Công Nghệ</h3></a></div>
 						<!--news-->
-							<div class="row news">
-								<div class="col-md-8 col-sm-8 col-xs-8">
-									<a href="<?php echo base_url(); ?>details/detail">Sắp có smartphone thân hình 'trong suốt' đến từ một nhà sản xuất nổi tiếng</a>
+							<?php foreach ($news as $value ): ?>
+								
+							
+								<div class="row news">
+									<div class="col-md-8 col-sm-8 col-xs-8">
+										<a href="<?php echo base_url(); ?>homepage/details/<?php echo $value['id']; ?>"><?php echo $value["tieude"] ?></a>
+									</div>
+									<div class="col-md-4 col-md-4 col-xs-8 ">
+										<img src="<?php echo base_url(); ?>application/images/<?php echo $value["hinh"] ?>">
+									</div>
 								</div>
-								<div class="col-md-4 col-md-4 col-xs-8 ">
-									<img src="<?php echo base_url(); ?>application/images/3a55ec77.jpg">
-								</div>
-							</div>
-
-							<div class="row news">
-								<div class="col-md-8 col-sm-8 col-xs-8">
-									<a href="<?php echo base_url(); ?>details/detail">Sắp có smartphone thân hình 'trong suốt' đến từ một nhà sản xuất nổi tiếng</a>
-								</div>
-								<div class="col-md-4 col-md-4 col-xs-8 ">
-									<img src="<?php echo base_url(); ?>application/images/3a55ec77.jpg">
-								</div>
-							</div>
-
-							<div class="row news">
-								<div class="col-md-8 col-sm-8 col-xs-8">
-									<a href="<?php echo base_url(); ?>details/detail">Sắp có smartphone thân hình 'trong suốt' đến từ một nhà sản xuất nổi tiếng</a>
-								</div>
-								<div class="col-md-4 col-md-4 col-xs-8 ">
-									<img src="<?php echo base_url(); ?>application/images/3a55ec77.jpg">
-								</div>
-							</div>
-
-							<div class="row news">
-								<div class="col-md-8 col-sm-8 col-xs-8">
-									<a href="<?php echo base_url(); ?>details/detail">Sắp có smartphone thân hình 'trong suốt' đến từ một nhà sản xuất nổi tiếng</a>
-								</div>
-								<div class="col-md-4 col-md-4 col-xs-8 ">
-									<img src="<?php echo base_url(); ?>application/images/3a55ec77.jpg">
-								</div>
-							</div>
+							<?php endforeach; ?>
 						<!--end news-->
 
 					</div>
@@ -112,7 +89,7 @@
 							</tr>
 
 							<tr>
-								<td><input type="submit" name="submit" value="Đăng Nhập" id="submit"></td>
+								<td><input type="submit" name="dangnhap" value="Đăng Nhập" id="submit"></td>
 							</tr>
 						</table>
 					</form>

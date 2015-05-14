@@ -36,25 +36,14 @@
 						</div>
 						<!--end icoin mang xa hoi-->
 
-						<!--dang ki va dang nhap-->
+						
 						<div class="col-md-7 col-sm-7 col-xs-7">
-							<?php if(empty($_SESSION["thanhvien"])): ?>
-								<div class="log">
-									<a href="<?php echo base_url();?>homepage/register">Đăng Kí</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>homepage/login">Đăng Nhập</a>
-								</div>
-							<?php else:?>
-								<div class="log" style=" color: white; ">
-									Chào bạn, <a href="#"><?php echo $_SESSION["thanhvien"]; ?></a> <a href="#">Giỏ Hàng</a> <a href="<?php echo base_url(); ?>homepage/index" onlick="huysession()">Đăng Xuất</a>
-								</div>
-									<?php endif; ?>
-							<form action="<?php echo base_url();?>homepage/search" class="search" onsubmit="return validateSearch();">
-								<input type="text" name="keyword" id="keyword" placeholder="Tìm Kiếm" >
-								<button>
-									<i class="fa fa-search fa-1x"></i>
-								</button>
-							</form>
+							
+							<div class="log" style=" color: white; ">
+								<p>Xin chào, <?php echo $_SESSION["thanhvien"]; ?></p>
+							</div>
 						</div>
-						<!--end dang ki va dang nhap-->
+						
 
 					</div>
 				</div>

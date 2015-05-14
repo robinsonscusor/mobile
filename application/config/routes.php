@@ -37,8 +37,14 @@
 | in the URL cannot be matched to a valid route.
 |
 */
-
-
+//$route['product/products/(:num)/(:num)'] = "product/products/$1/$2";
+//$route['product/products/(:num)'] = "product/products/$1";
+//$route['product/(:any)'] = "homepage/index";
+//$route['news/(:any)'] = "news/neww";
+//$route['details/detail/(:num)'] = "details/detail/$1";
+//$route['details/(:any)'] = "news/neww";
+//$route['(:any)'] = "homepage/index";
+$route['administrator'] = "administrator/index";
 $route['default_controller'] = "homepage/index";
 $route['404_override'] = '';
 

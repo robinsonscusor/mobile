@@ -1,7 +1,7 @@
 
 
 body {
-	font-family: "Calibri",Arial;
+	font-family: Arial;
 	background-color: #f0f0f0;
 }
 a {
@@ -97,6 +97,7 @@ a {
 	text-align: center;
 	margin-top: 20px;
 	border: 1px solid #c0c0c0;
+	height: 160px;
 
 }
 .product p {
@@ -109,7 +110,9 @@ a {
 	color: #8b0000;
 	text-decoration: none;
 }
-
+.ttpr {
+	height: 40px;
+}
 /*----------------Footer---------------------------------*/
 footer {
 	background-color: #3bbd99;
@@ -162,4 +165,51 @@ footer img {
 	height: 40px;
 
 
+}
+
+/*----------------Search---------------------------------*/
+.srh {
+	margin-top: 50px;
+}
+
+/*----------------Admin---------------------------------*/
+.atitle {
+	margin-top: 20px;
+	background-color: #a48403;
+}
+.atitle li{
+	margin : 10px 0;
+}
+
+.atitle a {
+	text-decoration: none;
+	color: black;
+}
+.atitle a:hover {
+	text-decoration: none;
+	color: #8b0000;
+}
+
+.tk {
+	text-align: center;
+	margin-top: 20px;
+}
+.tk a {
+	text-decoration: none;
+	color: black;
+}
+.tk a:hover {
+	text-decoration: none;
+	color: blue;
+}
+.btnxoa {
+	background: none;	
+	border: none;
+}
+.btnxoa img {
+	width: 50%;
+}
+
+.hasp img {
+	width: 100px;
 }
