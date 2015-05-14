@@ -44,7 +44,7 @@
 								</div>
 							<?php else:?>
 								<div class="log" style=" color: white; ">
-									Chào bạn, <a href="#"><?php echo $_SESSION["thanhvien"]; ?></a> <a href="#">Giỏ Hàng</a> <a href="<?php echo base_url(); ?>homepage/index" onlick="huysession()">Đăng Xuất</a>
+									Chào bạn, <a href="<?php echo base_url(); ?>homepage/information/<?php echo $_SESSION["thanhvien"]; ?>"><?php echo $_SESSION["thanhvien"]; ?></a>  <a href="<?php echo base_url(); ?>homepage/index" onlick="huysession()">Đăng Xuất</a>
 								</div>
 									<?php endif; ?>
 							<form action="<?php echo base_url();?>homepage/search" class="search" onsubmit="return validateSearch();">
@@ -61,7 +61,7 @@
 			</div>
 			<!--end header-->
 			<script type="text/javascript">
-			function huysession(){
-				"<?php unset($_SESSION['thanhvien']); ?>";
-			}
+			//function huysession(){
+				//"<?php unset($_SESSION['thanhvien']); ?>";
+			//}
 			</script>
