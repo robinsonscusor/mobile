@@ -131,7 +131,7 @@ class Administrator extends CI_Controller{
 
 				$this->model_mobi->admin_product_insert($values);
 
-				$IdSP = $this->model_mobi->admin_idsp()['id'];
+				$IdSP = $this->model_mobi->admin_idsp();
 
 				$values = array(
 					'chitiet' => array(
@@ -144,7 +144,7 @@ class Administrator extends CI_Controller{
 						'bonhotrong' => $_POST['bonhotrong'],
 						'thenhongoai' => $_POST['thenhongoai'],
 						'pin' => $_POST['pin'],
-						'idSP' => $IdSP
+						'idSP' => $IdSP['id']
 						)
 					);
 
