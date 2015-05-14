@@ -5,6 +5,7 @@ class Homepage extends CI_Controller{
 	
 	public function __construct()
 		{
+			session_start();
 			parent::__construct();
 			$this->load->model('model_mobi');
 		}
@@ -12,7 +13,7 @@ class Homepage extends CI_Controller{
 	// Trang Chu
 	public function index()
 	{
-		session_start();
+		
 		$this->load->helper('url');
 		$param = $this->uri->segment(3);
 		
@@ -41,7 +42,7 @@ class Homepage extends CI_Controller{
 	// Dang nhap
 	public function login()
 	{
-		session_start();
+		
 		$this->load->helper('url');
 		$this->load->view("teamplates/header");
 
@@ -96,6 +97,7 @@ class Homepage extends CI_Controller{
 		// Tin Tuc
 		public function news()
 	{
+
 		$this->load->helper('url');
 		$this->load->view("teamplates/header");
 
@@ -151,6 +153,19 @@ class Homepage extends CI_Controller{
 		$data["products"] = $this->model_mobi->search_tk($param);
 		$this->load->view('taskbar/search',$data);
 		$this->load->view("teamplates/footer");
+	}
+
+	//trang thong tin tai khoan
+	public function information()
+	{
+		
+		$this->load->helper('url');
+
+		$data['news'] = $this->model_mobi->home_news();
+
+		$this->load->view('teamplates/header');
+		$this->load->view('taskbar/thongtintk',$data);
+		$this->load->view('teamplates/footer');
 	}
 
 }
