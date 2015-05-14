@@ -54,7 +54,7 @@ class Homepage extends CI_Controller{
 				'matkhau' => $_POST['matkhau']
 				);
 			$datauser = $this->model_mobi->thanhvien_dangnhap($taikhoan);
-			if ($data != null) {
+			if ($datauser != null) {
 				$_SESSION['thanhvien'] = $datauser['tentk'];
 				echo "<script>window.location = '".base_url()."homepage/index'</script>";
 			}else{
