@@ -108,6 +108,24 @@
 			return $query->result_array();
 		}
 
+		//thong tin tai khoan 
+		public function information($param)
+		{
+			$this->db->where('tentk',$param);
+			$query = $this->db->get('taikhoan');
+			return $query->row_array();
+		}
+
+		//don hang theo tai khoan
+		public function information_dh($param)
+		{
+			$this->db->where('tentk',$param);
+			$query = $this->db->get('donhang');
+			return $query->result_array();
+		}
+
+
+
 		//Admin
 
 		//quan ly tai khoan
@@ -230,6 +248,30 @@
 				$this->db->insert('tintuc',$param);
 			}
 			
+		}
+
+		//doi mat khau
+		public function information_changeps($param = array(), $paramud = array(), $id)
+		{
+			if(!empty($param['tentk']))
+			{
+				$query = $this->db->get_where('taikhoan',array('tentk' => $param['tentk'],'matkhau' => $param['mkcu']));
+			
+				if(count($query->result_array()) > 0)
+				{
+					$this->db->where('tentk',$id);
+					$this->db->update('taikhoan',$paramud);
+					return true;
+				}
+			}
+			return false;
+		}
+
+		//gio hang
+		public function cart_insert($param = array(),$customer)
+		{
+
+			$this->db->insert('donhang');
 		}
 	}
  ?>

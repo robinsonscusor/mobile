@@ -29,10 +29,11 @@
 							<a href="https://www.facebook.com/?_rdr"><i class="fa fa-facebook-square fa-2x"></i></a>
 							<a href="https://twitter.com/"><i class="fa fa-twitter-square fa-2x"></i></a>
 							<a href="https://accounts.google.com/"><i class="fa fa-google-plus-square fa-2x"></i></a>
-							<a href="https://www.rss.com"><i class="fa fa-rss fa-2x"></i></a>
+							
 							<a href="<?php echo base_url();?>homepage/index/1"><i class="fa fa-apple fa-2x"></i></a>
 							<a href="<?php echo base_url();?>homepage/index/2"><i class="fa fa-android fa-2x"></i></a>
 							<a href="<?php echo base_url();?>homepage/index/3"><i class="fa fa-windows fa-2x"></i></a>
+							<a href="<?php echo base_url();?>homepage/index"><i class="fa fa-shopping-cart fa-2x"></i></a>
 						</div>
 						<!--end icoin mang xa hoi-->
 
@@ -40,7 +41,7 @@
 						<div class="col-md-7 col-sm-7 col-xs-7">
 							
 							<div class="log" style=" color: white; ">
-								<p>Xin chào, <?php echo $_SESSION["thanhvien"]; ?></p>
+								<p>Xin chào, <?php echo  $this->session->userdata('thanhvien'); ?></p>
 							</div>
 						</div>
 						

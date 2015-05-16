@@ -5,7 +5,7 @@ class Homepage extends CI_Controller{
 	
 	public function __construct()
 		{
-			session_start();
+			//session_start();
 			parent::__construct();
 			$this->load->model('model_mobi');
 		}
@@ -56,8 +56,11 @@ class Homepage extends CI_Controller{
 				);
 			$datauser = $this->model_mobi->thanhvien_dangnhap($taikhoan);
 			if ($datauser != null) {
-				$_SESSION['thanhvien'] = $datauser['tentk'];
-				echo "<script>window.location = '".base_url()."homepage/index'</script>";
+
+				$this->session->set_userdata('thanhvien',$datauser['tentk']) ;
+				$this->session->set_userdata('quyen',$datauser['quyen']) ;
+				redirect('/homepage/index', 'refresh');
+
 			}else{
 				echo "<script>alert('dang nhap that bai, vui long kiem tra lai tai khoan')</script>";
 			}
@@ -86,7 +89,8 @@ class Homepage extends CI_Controller{
 					'diachi' => $_POST['diachi']
 				 );
 				if($this->model_mobi->thanhvien($taikhoan)==true){
-					echo "<script>alert('Đăng kí thành công'); window.location='".base_url()."login/log';</script>";
+					echo "<script>alert('Đăng kí thành công')</script>"; 
+					redirect('/homepage/index', 'refresh');
 				}else{
 					echo "<script>alert('không thể thực hiện thao tác')</script>";
 				}
@@ -117,12 +121,65 @@ class Homepage extends CI_Controller{
 		$idloai = $this->uri->segment(4);
 		$data['products_ca'] = $this->model_mobi->product_relate($idloai,$param);
 		if (count($data["products"])==0 || count($data["products_ca"])==0) {
-			header("Location:products");
+			redirect('/homepage/index','refresh');
 		}
 		$this->load->view("teamplates/header");
 		$this->load->view("products/product",$data);
+
+		if(isset($_POST['muahang'])){
+			if ($this->session->userdata('thanhvien')) {
+				$count = 0;
+				if (!$this->session->userdata('giohang')) {
+					$gia = $data["products"]['gia'];
+					$sanpham = $data["products"]['idSP'];
+					$cart = array(
+						$count => array(
+							'sanpham' => $sanpham,
+							'gia' => $gia,
+							'soluong' => '1',
+							'thanhtien' => $gia
+						)
+					);
+					$this->session->set_userdata('giohang',$cart);
+				}else{
+
+					$cart = $this->session->userdata('giohang');
+					$kt = false;
+					for($i = 0;$i<count($cart);$i++) {
+
+						if ($cart[$i]['sanpham'] == $param) {
+							$cart[$i]['soluong']++;
+							$cart[$i]['thanhtien'] = $cart[$i]['soluong'] * $cart[$i]['gia'];
+							$this->session->set_userdata('giohang',$cart);
+							$kt = true;
+						}
+					}
+					if ($kt == false) {
+						$gia = $data["products"]['gia'];
+						$sanpham = $data["products"]['idSP'];
+						$cart2 = array(
+							$count++ => array(
+								'sanpham' => $sanpham,
+								'gia' => $gia,
+								'soluong' => '1',
+								'thanhtien' => $gia
+							)
+							);
+						$cart1 = array_merge($cart,$cart2);
+						$this->session->set_userdata('giohang',$cart1);
+					}
+					}
+					
+			}
+			else
+			{
+				echo "<script>alert('bạn phải đăng nhập')</script>";
+			}
+			
+		}
 		$this->load->view("teamplates/footer");
 	}
+
 
 	// Tin Chi Tiet
 	public function details()
@@ -132,7 +189,7 @@ class Homepage extends CI_Controller{
 		$data["newca"] = $this->model_mobi->details_newca($param);
 		$data["news"] = $this->model_mobi->details_detail($param);
 		if (count($data["news"])==0) {
-			header("Location:home");
+			redirect('/homepage/news','refresh');
 		}
 		$this->load->view("teamplates/header");
 		$this->load->view("details/detail",$data);
@@ -158,15 +215,88 @@ class Homepage extends CI_Controller{
 	//trang thong tin tai khoan
 	public function information()
 	{
-		
+		$param = $this->uri->segment(3);
 		$this->load->helper('url');
 
-		$data['news'] = $this->model_mobi->home_news();
+		if($param == $this->session->userdata('thanhvien'))
+		{
+			
+			$data['news'] = $this->model_mobi->home_news();
+			$data['info'] = $this->model_mobi->information($param);
+			$data['purchase'] = $this->model_mobi->information_dh($param);
 
-		$this->load->view('teamplates/header');
-		$this->load->view('taskbar/thongtintk',$data);
-		$this->load->view('teamplates/footer');
+			$this->load->view('teamplates/header');
+			$this->load->view('taskbar/information_account',$data);
+			$this->load->view('teamplates/footer');
+		}
+		else
+		{
+			redirect('/homepage/index', 'refresh');
+		}
 	}
+        
 
+        // logout
+        public function logout(){
+            $this->load->helper('url');
+            $this->session->unset_userdata('thanhvien');
+            $this->session->unset_userdata('quyen');
+            $this->session->unset_userdata('giohang');
+            redirect('/homepage/index', 'refresh');
+        }
+
+        //doi mat khau
+        public function change_password()
+        {
+        	$param = $this->uri->segment(3);
+			$this->load->helper('url');
+
+			if($param == $this->session->userdata('thanhvien'))
+			{
+				$data['news'] = $this->model_mobi->home_news();
+				
+				$this->load->view('teamplates/header');
+				$this->load->view('taskbar/change_password',$data);
+
+				if(!empty($_POST['doimatkhau']))
+				{
+					$paramtk = array(
+						'tentk' => $param,
+						'mkcu' => $_POST['mkcu']
+						);
+					$parammkm = array(
+						'matkhau' => $_POST['mkmoi']
+						);
+					if($this->model_mobi->information_changeps($paramtk, $parammkm, $param) == true)
+					{
+						echo "<script>alert('Đổi Mật Khẩu Thành Công')</script>"; 
+						redirect('/homepage/index', 'refresh');
+					}
+					else
+					{
+						echo "<script>alert('Mật Khẩu Cũ Không đúng')</script>"; 
+					}
+				}
+
+				$this->load->view('teamplates/footer');
+			}
+			else
+			{
+				redirect('/homepage/index', 'refresh');
+			}
+        }
+
+        //gio hang
+        public function cart()
+        {
+        	$this->load->helper('url');
+
+        	$data['news'] = $this->model_mobi->home_news();
+        	$data['cart'] = $this->session->userdata('giohang');
+        	
+        	$this->load->view('teamplates/header');
+        	$this->load->view('taskbar/cart',$data);
+        	$this->load->view('teamplates/footer');
+        }
 }
 ?>
