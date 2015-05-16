@@ -25,7 +25,7 @@
 			if (!empty($taikhoan['tendn'])) {
 				$query = $this->db->get_where('taikhoan',array('tentk' => $taikhoan['tendn'],'matkhau' => $taikhoan['matkhau']));
 				if (count($query->result_array())>0) {
-						return $query->row_array();
+					return $query->row_array();
 				}
 			}
 			return null;
@@ -256,7 +256,7 @@
 			if(!empty($param['tentk']))
 			{
 				$query = $this->db->get_where('taikhoan',array('tentk' => $param['tentk'],'matkhau' => $param['mkcu']));
-			
+
 				if(count($query->result_array()) > 0)
 				{
 					$this->db->where('tentk',$id);
@@ -268,10 +268,13 @@
 		}
 
 		//gio hang
-		public function cart_insert($param = array(),$customer)
+		public function cart_insert($param = array())
 		{
-
-			$this->db->insert('donhang');
+			if (!empty($param)) {
+				$this->db->insert_batch('donhang',$param);
+				return true;
+			}
+			return false;
 		}
 	}
- ?>
+	?>

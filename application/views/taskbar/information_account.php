@@ -126,8 +126,8 @@
 							<tr>
 								<td><?php echo $value['id']; ?></td>
 								<td><?php echo $value['tentk']; ?></td>
-								<td><?php echo $value['sp']; ?></td>
-								<td><?php echo $value['tt']; ?> đ</td>
+								<td><?php echo $value['masp']; ?></td>
+								<td><?php echo $value['thanhtien']; ?> đ</td>
 							</tr>
 
 							<?php endforeach; ?>
