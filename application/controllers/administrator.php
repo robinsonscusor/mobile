@@ -268,7 +268,7 @@ class Administrator extends CI_Controller{
 	{
 		$this->load->helper('url');
 		if($this->session->userdata('quyen') == 1)
-			{
+		{
 
 			$this->load->view('teamplates/admin_header');
 			$this->load->view('admin/themtintuc');
@@ -296,10 +296,34 @@ class Administrator extends CI_Controller{
 
 		$this->load->helper('url');
 		if($this->session->userdata('quyen') == 1)
-			{
+		{
 
 			$this->load->view('teamplates/admin_header');
-			$this->load->view('admin/donhang');
+
+			$data['info'] = $this->model_mobi->admin_dh();
+
+			$this->load->view('admin/donhang',$data);
+
+			$param = $this->uri->segment(3);
+				if($param == true){
+					$this->model_mobi->admin_dh_delete($param);
+					redirect('/administrator/donhang','refresh');					
+				
+				}
+
+				if(isset($_POST['capnhattt']))
+				{
+					
+					$paramtt = array(
+						'tinhtrang' => $_POST['tinhtrang'],
+						);
+					$this->model_mobi->admin_dh_updatett($paramid, $paramtt);
+					var_dump($paramid);die();
+					
+					redirect('/administrator/donhang','refresh');
+				}
+			
+
 			$this->load->view('teamplates/admin_footer');
 		}
 		else
@@ -313,9 +337,15 @@ class Administrator extends CI_Controller{
 		
 		$this->load->helper('url');
 		if($this->session->userdata('quyen') == 1)
-			{
+		{
+			$param = $this->uri->segment(3);
 			$this->load->view('teamplates/admin_header');
-			$this->load->view('admin/suadonhang');
+
+			$data['user'] = $this->model_mobi->admin_user();
+			$data['product'] = $this->model_mobi->admin_product();
+			$data['info'] = $this->model_mobi->admin_dh($param);
+
+			$this->load->view('admin/suadonhang',$data);
 			$this->load->view('teamplates/admin_footer');
 		}
 		else

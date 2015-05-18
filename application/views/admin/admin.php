@@ -31,15 +31,23 @@
 						
 					<?php foreach ($info as $value): ?>
 						<tr>
-							<td><a href="<?php echo  base_url().'administrator/updatetk/'.$value['tentk'] ?>"><?php echo $value['tentk'] ?></a></td>
+							<td><?php echo $value['tentk'] ?></td>
 							<td><?php echo $value['matkhau'] ?></td>
 							<td><?php echo $value['quyen'] ?></td>
 							<td><?php echo $value['dienthoai'] ?></td>
 							<td> <?php echo $value['diachi'] ?></td>
 							
-							<td>
-	 							<td><a  href="<?php echo  base_url().'administrator/index/'.$value['tentk'] ?>"><img style="width:20px;" src="<?php echo base_url(); ?>application/images/xoa.jpg" onclick="return validateDelete();"></a></td>
-							</td>
+							
+	 						<td>
+	 							<a  href="<?php echo  base_url().'administrator/updatetk/'.$value['tentk'] ?>"><img style="width:20px;" src="<?php echo base_url(); ?>application/images/edit.png" ></a>
+	 						</td>
+							
+
+							
+	 						<td>
+	 							<a  href="<?php echo  base_url().'administrator/index/'.$value['tentk'] ?>"><img style="width:20px;" src="<?php echo base_url(); ?>application/images/xoa.jpg" onclick="return validateDelete();"></a>
+	 						</td>
+							
 						</tr>
 					<?php endforeach; ?>
 					</table>

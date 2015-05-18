@@ -38,13 +38,18 @@
 						<?php foreach ($info as $value) : ?>
 						<tr>
 							<td><?php echo $value['id'] ?></td>
-							<td><a href="<?php echo  base_url().'administrator/updatett/'.$value['id'] ?>"><?php echo $value['tieude'] ?></a></td>	
+							<td><?php echo $value['tieude'] ?></td>	
 							<td><?php echo $value['tomtat'] ?></td>
 							<td class="hasp"><img src="<?php echo base_url(); ?>application/images/<?php echo $value['hinh'] ?>"></td>
 							
 							<td>
-	 							<td><a  href="<?php echo  base_url().'administrator/tintuc/'.$value['id'] ?>"><img style="width:20px;" src="<?php echo base_url(); ?>application/images/xoa.jpg" onclick="return validateDelete();"></a></td>
-							</td>
+	 							<a  href="<?php echo  base_url().'administrator/updatett/'.$value['id'] ?>"><img style="width:20px;" src="<?php echo base_url(); ?>application/images/edit.png" ></a>
+	 						</td>
+
+	 						<td>
+	 							<a  href="<?php echo  base_url().'administrator/tintuc/'.$value['id'] ?>"><img style="width:20px;" src="<?php echo base_url(); ?>application/images/xoa.jpg" onclick="return validateDelete();"></a>
+	 						</td>
+							
 						</tr>
 
 						<?php endforeach; ?>

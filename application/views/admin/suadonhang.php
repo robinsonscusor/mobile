@@ -23,25 +23,46 @@
 						</tr>
 						<tr>
 							<td>ID</td>
-							<td>id</td>
+							<td><?php echo $info['id'] ?></td>
 						</tr>
 
 						<tr>
 							<td>Tên Tài Khoản</td>	
-							<td><input type="text" name="taikhoan"></td>
+							<td>
+								<select>
+									<?php foreach ($user as $value) : ?>
+										<?php if($info['tentk'] == $value['tentk']) : ?>
+											<option value="<?php echo $value['tentk'] ?>" selected><?php echo $value['tentk'] ?></option>
+										<?php else : ?>
+											<option value="<?php echo $value['tentk'] ?>" ><?php echo $value['tentk'] ?></option>
+									<?php endif; endforeach; ?>
+								</select>
+							</td>
 						</tr>
 
 						<tr>
 							<td>ID Sản Phẩm</td>
-							<td><input type="text" name="idsp"></td>
+							<td>
+								<select>
+									<?php foreach ($product as $valuepr) : ?>
+										<?php if($info['masp'] == $valuepr['id']) : ?>
+											<option value="<?php echo $valuepr['id'] ?>" selected><?php echo $valuepr['tendienthoai'] ?></option>
+										<?php else : ?>
+											<option value="<?php echo $valuepr['id'] ?>" ><?php echo $valuepr['tendienthoai'] ?></option>
+									<?php endif; endforeach; ?>
+								</select>
+							</td>
 						</tr>
 
 						<tr>
-							<td>Thành Tiền</td>
-							<td><input type="text" name="thanhtien"></td>
+							<td>Đơn Giá</td>
+							<td><input type="text" name="dongia" readonly="readonly" value="<?php echo $info['gia'] ?>"></td>
 						</tr>
 
-						
+						<tr>
+							<td>Số Lượng</td>
+							<td><input type="text" name="gia" value="<?php echo $info['soluong'] ?>"></td>
+						</tr>
 
 						<tr>
 							<td align="center" colspan="2"><input type="submit" name="suadh" value="Đồng Ý"></td>

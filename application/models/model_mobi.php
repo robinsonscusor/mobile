@@ -125,6 +125,32 @@
 		}
 
 
+		//doi mat khau
+		public function information_changeps($param = array(), $paramud = array(), $id)
+		{
+			if(!empty($param['tentk']))
+			{
+				$query = $this->db->get_where('taikhoan',array('tentk' => $param['tentk'],'matkhau' => $param['mkcu']));
+
+				if(count($query->result_array()) > 0)
+				{
+					$this->db->where('tentk',$id);
+					$this->db->update('taikhoan',$paramud);
+					return true;
+				}
+			}
+			return false;
+		}
+
+		//gio hang
+		public function cart_insert($param = array())
+		{
+			if (!empty($param)) {
+				$this->db->insert_batch('donhang',$param);
+				return true;
+			}
+			return false;
+		}
 
 		//Admin
 
@@ -222,7 +248,7 @@
 				$query = $this->db->get('tintuc');
 				return $query->result_array();
 			}
-			$this->db->like('id',$param);
+			$this->db->where('id',$param);
 			$query = $this->db->get('tintuc');
 			return $query->row_array();
 		}
@@ -250,31 +276,32 @@
 			
 		}
 
-		//doi mat khau
-		public function information_changeps($param = array(), $paramud = array(), $id)
+		//quan ly don hang
+
+		public function admin_dh($param = false)
 		{
-			if(!empty($param['tentk']))
+			if($param == false)
 			{
-				$query = $this->db->get_where('taikhoan',array('tentk' => $param['tentk'],'matkhau' => $param['mkcu']));
-
-				if(count($query->result_array()) > 0)
-				{
-					$this->db->where('tentk',$id);
-					$this->db->update('taikhoan',$paramud);
-					return true;
-				}
+				$query = $this->db->get('donhang');
+				return $query->result_array();
 			}
-			return false;
+
+			$this->db->where('id',$param);
+			$query = $this->db->get('donhang');
+			return $query->row_array();
 		}
 
-		//gio hang
-		public function cart_insert($param = array())
+		public function admin_dh_delete($param)
 		{
-			if (!empty($param)) {
-				$this->db->insert_batch('donhang',$param);
-				return true;
-			}
-			return false;
+			$this->db->where('id',$param);
+			$this->db->delete('donhang');
 		}
+
+		public function admin_dh_updatett($id,$param = array()){
+			$this->db->where('id',$id);
+			$this->db->update('donhang',$param);
+		}
+
+		
 	}
 	?>
