@@ -40,14 +40,21 @@
 
 						<tr>
 							<td><?php echo $value["id"]; ?></td>
-							<td><a href="<?php echo base_url(); ?>administrator/updatesp/<?php echo $value["id"]; ?>"><?php echo $value["tendienthoai"]; ?></a></td>
+							<td><?php echo $value["tendienthoai"]; ?></a></td>
 							
 							<td><?php echo $value["gia"]; ?></td>
 							<td class="hasp"><img src="<?php echo base_url(); ?>application/images/<?php echo $value["hinh"]; ?>"></td>
 							<td><?php echo $value["idLoai"] ?></td>
+
 							<td>
-								<td><a  href="<?php echo  base_url().'administrator/sanpham/'.$value['id'] ?>"><img style="width:20px;" src="<?php echo base_url(); ?>application/images/xoa.jpg" onclick="return validateDelete();"></a></td>
+	 							<a  href="<?php echo  base_url().'administrator/updatesp/'.$value['id'] ?>"><img style="width:20px;" src="<?php echo base_url(); ?>application/images/edit.png" ></a>
+	 						</td>
+
+							
+							<td>
+								<a  href="<?php echo  base_url().'administrator/sanpham/'.$value['id'] ?>"><img style="width:20px;" src="<?php echo base_url(); ?>application/images/xoa.jpg" onclick="return validateDelete();"></a>
 							</td>
+							
 						</tr>
 
 						<?php endforeach; ?>

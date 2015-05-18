@@ -19,28 +19,60 @@
 				<form method="post">
 					<table class="table table-hover tk" >
 						<tr>
-							<td align="center" colspan="2" ><h4>Quản Lý Đơn Hàng</h4></td>
+							<td align="center" colspan="3" ><h4>Quản Lý Đơn Hàng</h4></td>
 						</tr>
 						<tr>
 							<td>ID</td>
 							<td>Tên Tài Khoản</td>
 							<td>ID Sản Phẩm</td>
+							<td>Đơn Giá</td>
+							<td>Số Lượng</td>
 							<td>Thành Tiền</td>
+							<td>Tình Trạng</td>
 							
 						</tr>
 
+						<?php foreach ($info as $value) : ?>
 						<tr>
-							<td>id</td>
-							<td><a href="#">taikhoan</a></td>
-							<td>idsanpham</td>
-							<td>thanhtien</td>
+							<td><?php echo $value['id'] ?></td>
+							<td><?php echo $value['tentk'] ?></td>
+							<td><?php echo $value['masp'] ?></td>
+							<td><?php echo $value['gia'] ?></td>
+							<td><?php echo $value['soluong'] ?></td>
+							<td><?php echo $value['thanhtien'] ?></td>
+
+							<td>
+								<select name="tinhtrang">
+									<?php if($value['tinhtrang'] == 'chuagui') : ?>
+										<option value="chuagui" selected>Chưa gửi hàng</option>
+										<option value="dagui">Đã gửi hàng</option>
+
+									<?php elseif($value['tinhtrang'] == 'dagui') : ?>
+										<option value="chuagui" >Chưa gửi hàng</option>
+										<option value="dagui" selected>Đã gửi hàng</option>
+
+									<?php else : ?>	
+										<option value="chuagui">Chưa gửi hàng</option>
+										<option value="dagui">Đã gửi hàng</option>
+
+									<?php endif; ?>
+
+								</select>
+							</td>
+
+							<td>
+	 							<a  href="<?php echo  base_url().'administrator/updatedh/'.$value['id'] ?>"><img style="width:20px;" src="<?php echo base_url(); ?>application/images/edit.png" ></a>
+	 						</td>
+
+	 						<td>
+	 							<input type="submit" name="capnhattt" value="Cập Nhật">
+	 						</td>
 							
 							<td>
-								<button class="btnxoa">
-									<img src="<?php echo base_url(); ?>application/images/xoa.jpg">
-								</button>
-							</td>
+	 							<a  href="<?php echo  base_url().'administrator/donhang/'.$value['id'] ?>"><img style="width:20px;" src="<?php echo base_url(); ?>application/images/xoa.jpg" onclick="return validateDelete();"></a>
+	 						</td>
 						</tr>
+					<?php endforeach; ?>
 
 					</table>
 				</form>

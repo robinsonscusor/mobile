@@ -25,7 +25,7 @@
 			if (!empty($taikhoan['tendn'])) {
 				$query = $this->db->get_where('taikhoan',array('tentk' => $taikhoan['tendn'],'matkhau' => $taikhoan['matkhau']));
 				if (count($query->result_array())>0) {
-						return $query->row_array();
+					return $query->row_array();
 				}
 			}
 			return null;
@@ -106,6 +106,50 @@
 			$this->db->or_like(array('gia' => $param['keyword']));
 			$query = $this->db->get('dienthoai');
 			return $query->result_array();
+		}
+
+		//thong tin tai khoan 
+		public function information($param)
+		{
+			$this->db->where('tentk',$param);
+			$query = $this->db->get('taikhoan');
+			return $query->row_array();
+		}
+
+		//don hang theo tai khoan
+		public function information_dh($param)
+		{
+			$this->db->where('tentk',$param);
+			$query = $this->db->get('donhang');
+			return $query->result_array();
+		}
+
+
+		//doi mat khau
+		public function information_changeps($param = array(), $paramud = array(), $id)
+		{
+			if(!empty($param['tentk']))
+			{
+				$query = $this->db->get_where('taikhoan',array('tentk' => $param['tentk'],'matkhau' => $param['mkcu']));
+
+				if(count($query->result_array()) > 0)
+				{
+					$this->db->where('tentk',$id);
+					$this->db->update('taikhoan',$paramud);
+					return true;
+				}
+			}
+			return false;
+		}
+
+		//gio hang
+		public function cart_insert($param = array())
+		{
+			if (!empty($param)) {
+				$this->db->insert_batch('donhang',$param);
+				return true;
+			}
+			return false;
 		}
 
 		//Admin
@@ -204,7 +248,7 @@
 				$query = $this->db->get('tintuc');
 				return $query->result_array();
 			}
-			$this->db->like('id',$param);
+			$this->db->where('id',$param);
 			$query = $this->db->get('tintuc');
 			return $query->row_array();
 		}
@@ -231,5 +275,33 @@
 			}
 			
 		}
+
+		//quan ly don hang
+
+		public function admin_dh($param = false)
+		{
+			if($param == false)
+			{
+				$query = $this->db->get('donhang');
+				return $query->result_array();
+			}
+
+			$this->db->where('id',$param);
+			$query = $this->db->get('donhang');
+			return $query->row_array();
+		}
+
+		public function admin_dh_delete($param)
+		{
+			$this->db->where('id',$param);
+			$this->db->delete('donhang');
+		}
+
+		public function admin_dh_updatett($id,$param = array()){
+			$this->db->where('id',$id);
+			$this->db->update('donhang',$param);
+		}
+
+		
 	}
- ?>
+	?>

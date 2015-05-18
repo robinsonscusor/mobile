@@ -172,6 +172,17 @@ footer img {
 	margin-top: 50px;
 }
 
+/*----------------Information accoun---------------------------------*/
+.tttk {
+	text-align: center;
+	margin-top: 10px;
+}
+.tttk a {
+	text-decoration: none;
+	color: black;
+}
+
+
 /*----------------Admin---------------------------------*/
 .atitle {
 	margin-top: 20px;

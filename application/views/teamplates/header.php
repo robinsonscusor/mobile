@@ -29,22 +29,24 @@
 							<a href="https://www.facebook.com/?_rdr"><i class="fa fa-facebook-square fa-2x"></i></a>
 							<a href="https://twitter.com/"><i class="fa fa-twitter-square fa-2x"></i></a>
 							<a href="https://accounts.google.com/"><i class="fa fa-google-plus-square fa-2x"></i></a>
-							<a href="https://www.rss.com"><i class="fa fa-rss fa-2x"></i></a>
+								
 							<a href="<?php echo base_url();?>homepage/index/1"><i class="fa fa-apple fa-2x"></i></a>
 							<a href="<?php echo base_url();?>homepage/index/2"><i class="fa fa-android fa-2x"></i></a>
 							<a href="<?php echo base_url();?>homepage/index/3"><i class="fa fa-windows fa-2x"></i></a>
+							<a href="<?php echo base_url();?>homepage/cart"><i class="fa fa-shopping-cart fa-2x"></i></a>
 						</div>
 						<!--end icoin mang xa hoi-->
 
 						<!--dang ki va dang nhap-->
 						<div class="col-md-7 col-sm-7 col-xs-7">
-							<?php if(empty($_SESSION["thanhvien"])): ?>
+                                                        
+							<?php if(!$this->session->userdata('thanhvien')): ?>
 								<div class="log">
 									<a href="<?php echo base_url();?>homepage/register">Đăng Kí</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>homepage/login">Đăng Nhập</a>
 								</div>
 							<?php else:?>
 								<div class="log" style=" color: white; ">
-									Chào bạn, <a href="#"><?php echo $_SESSION["thanhvien"]; ?></a> <a href="#">Giỏ Hàng</a> <a href="<?php echo base_url(); ?>homepage/index" onlick="huysession()">Đăng Xuất</a>
+									Chào bạn, <a href="<?php echo base_url(); ?>homepage/information/<?php echo $this->session->userdata('thanhvien'); ?>"><?php echo $this->session->userdata('thanhvien'); ?></a>  <a href="<?php echo base_url(); ?>homepage/logout" >Đăng Xuất</a>
 								</div>
 									<?php endif; ?>
 							<form action="<?php echo base_url();?>homepage/search" class="search" onsubmit="return validateSearch();">
@@ -60,8 +62,4 @@
 				</div>
 			</div>
 			<!--end header-->
-			<script type="text/javascript">
-			function huysession(){
-				"<?php unset($_SESSION['thanhvien']); ?>";
-			}
-			</script>
+			

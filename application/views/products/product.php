@@ -6,6 +6,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-sm-8 col-xs-8 products">
+						<form method="post">
+
 						<h3>Thông Số Kỹ Thuật <?php echo $products['tendienthoai'] ?></h3>
 						<img src="<?php echo base_url(); ?>application/images/<?php echo $products['hinh'] ?>">
 						<table>
@@ -56,13 +58,14 @@
 							
 							<tr>		
 								<td>			
-									<button class="btn">
+									<button class="btn" name="muahang" value="muahang">
 										<img src="<?php echo base_url(); ?>application/images/dathang.png">
 									</button>
 								</td>
 								<td><h3><?php echo $products['gia'] ?> VND</h3></td>
 							</tr>
 						</table>
+						</form>
 
 					</div>
 

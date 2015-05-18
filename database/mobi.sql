@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 06, 2015 at 01:34 AM
+-- Generation Time: May 16, 2015 at 03:58 AM
 -- Server version: 5.6.23
 -- PHP Version: 5.4.39
 
@@ -125,9 +125,20 @@ INSERT INTO `dienthoai` (`id`, `tendienthoai`, `gia`, `hinh`, `idLoai`) VALUES
 CREATE TABLE IF NOT EXISTS `donhang` (
   `id` int(11) NOT NULL,
   `tentk` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
-  `idSP` int(11) NOT NULL,
-  `thanhtien` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `masp` int(11) NOT NULL,
+  `gia` int(11) NOT NULL,
+  `soluong` int(11) NOT NULL,
+  `thanhtien` int(11) NOT NULL,
+  `tinhtrang` varchar(11) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `donhang`
+--
+
+INSERT INTO `donhang` (`id`, `tentk`, `masp`, `gia`, `soluong`, `thanhtien`, `tinhtrang`) VALUES
+(1, 'admin', 24, 2190000, 1, 2190000, 'chuagui'),
+(2, 'admin', 25, 1790000, 2, 3580000, 'chuagui');
 
 -- --------------------------------------------------------
 
@@ -257,7 +268,7 @@ ALTER TABLE `dienthoai`
 -- AUTO_INCREMENT for table `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `loaidienthoai`
 --
